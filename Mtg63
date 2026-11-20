@@ -1,0 +1,17 @@
+local config = {
+    [SEU_PLACE_ID] = function()
+        getgenv().SCRIPT_KEY = "keyless"
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/clebio954/MTG447.LUA.B/main/Mtg447.lua"))()
+    end,
+}
+repeat task.wait() until game:IsLoaded()
+local entry = config[game.PlaceId]
+if entry then
+    pcall(function()
+        if type(entry) == "function" then
+            entry()
+        else
+            loadstring(game:HttpGet(entry))()
+        end
+    end)
+end
